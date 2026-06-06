@@ -62,9 +62,10 @@ function afficherEvenement(event) {
   // Injecte le HTML dans l'article
   detail.innerHTML = `
     <img class="event-detail__image"
-         src="${imageUrl}"
-         alt="${event.title.fr}"
-         width="800" height="450">
+     src="${imageUrl}"
+     alt="${event.title.fr}"
+     width="800" height="450"
+     loading="lazy">
 
     <div class="event-detail__content">
       <h2 class="event-detail__title">${event.title.fr}</h2>

@@ -52,15 +52,27 @@ header {
 }
 
 // ============================================
-// Container — grille 2 colonnes
+// Container — Mobile First
 // ============================================
 #container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 1.5rem;
-  padding: 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media (min-width: 600px) {
+  #container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  #container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
 }
 
 // ============================================
@@ -233,12 +245,28 @@ footer {
 }
 
 // ============================================
-// RESPONSIVE — Mobile First
+// Responsive — Mobile First
 // ============================================
 
-@media (max-width: 500px) {
-  #container {
-    grid-template-columns: 1fr;
-    padding: 1rem;
+// Base = mobile
+#event-detail {
+  padding: 1rem;
+}
+
+.event-detail__image {
+  height: 200px;
+}
+
+// Tablette
+@media (min-width: 600px) {
+  .event-detail__image {
+    height: 280px;
+  }
+}
+
+// Desktop
+@media (min-width: 1024px) {
+  .event-detail__image {
+    height: 350px;
   }
 }

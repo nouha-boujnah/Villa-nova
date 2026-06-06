@@ -1,4 +1,8 @@
 console.log("JavaScript fonctionne !");
+// Timer — message de bienvenue après 2 secondes
+setTimeout(() => {
+  console.log("Bienvenue sur Île-de-France Nature Animation !");
+}, 2000);
 
 const container = document.getElementById("container");
 
@@ -20,7 +24,7 @@ fetch("https://api.openagenda.com/v2/agendas/68165804/events?key=10fc54442fa745b
   <div class="card__body">
     <h2 class="card__title">${event.title.fr}</h2>
   </div>
-  <img class="card__image" src="${imageUrl}" alt="${event.title.fr}">
+  <img class="card__image" src="${imageUrl}" alt="${event.title.fr}" loading="lazy">
   <div class="card__footer">
     <p class="card__date">${event.dateRange?.fr || ""}</p>
     <p class="card__location">${event.location?.name || "Lieu inconnu"}</p>
