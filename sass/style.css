@@ -148,6 +148,7 @@ footer {
   font-family: "Irish Grover", cursive;
   border: none;
   outline: none;
+  font-style: normal;
 }
 
 .event-detail__meta {
