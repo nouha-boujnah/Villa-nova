@@ -1,5 +1,8 @@
 // ============================================
-// Variables
+// Variables — couleurs réutilisables dans tout le fichier
+// Avantage : si on change une couleur, elle change partout
+// Syntaxe SCSS : $nom-variable: valeur;
+// Différence avec CSS natif : CSS utilise --ma-variable, SCSS utilise $ma-variable
 // ============================================
 $color-vert-fonce: #1e3d1a;
 $color-vert: #2d5a27;
@@ -12,7 +15,8 @@ $color-blanc: #ffffff;
 $color-bordure: #d8e8d0;
 
 // ============================================
-// Reset de base
+// Reset de base — supprime les marges et paddings par défaut du navigateur
+// box-sizing: border-box = la largeur inclut le padding et la bordure
 // ============================================
 * {
   margin: 0;
@@ -21,22 +25,27 @@ $color-bordure: #d8e8d0;
 }
 
 body {
+  // Georgia = police avec empattements, adaptée aux textes longs
   font-family: 'Georgia', serif;
   background-color: $color-fond;
   color: $color-texte;
 }
 
 // ============================================
-// Header
+// Header — barre de navigation en haut
+// display:flex = les éléments s'alignent côte à côte (flexbox)
+// position:relative = permet de positionner le h1 en absolu à l'intérieur
 // ============================================
 header {
   background-color: #6B9080;
   display: flex;
-  align-items: center;
+  align-items: center; // aligne verticalement les éléments au centre
   padding: 20px 30px;
   position: relative;
 
   img {
+    // Le nesting SCSS permet d'écrire les styles enfants à l'intérieur du parent
+    // Equivalent CSS : header img { max-width: 80px; }
     max-width: 80px;
   }
 
@@ -44,7 +53,9 @@ header {
     font-size: 1.8rem;
     font-weight: bold;
     color: $color-blanc;
+    // Irish Grover = police importée depuis Google Fonts dans le HTML
     font-family: 'Irish Grover', cursive;
+    // Centrage absolu horizontal : position absolute + left 50% + translateX(-50%)
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -52,15 +63,19 @@ header {
 }
 
 // ============================================
-// Container — Mobile First
+// Container — grille d'affichage des cartes
+// Mobile First : on commence par le mobile (1 colonne)
+// puis on agrandit avec min-width pour tablette et desktop
 // ============================================
 #container {
   display: grid;
+  // 1 colonne sur mobile par défaut
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 1.5rem;   // espace entre les cartes
   padding: 1rem;
 }
 
+// Tablette : à partir de 600px, 2 colonnes
 @media (min-width: 600px) {
   #container {
     grid-template-columns: repeat(2, 1fr);
@@ -68,37 +83,45 @@ header {
   }
 }
 
+// Desktop : à partir de 1024px, largeur maximale centrée
 @media (min-width: 1024px) {
   #container {
     max-width: 1100px;
-    margin: 0 auto;
+    margin: 0 auto; // centre le conteneur horizontalement
   }
 }
 
 // ============================================
-// Card — titre en haut, image, date/lieu en bas
+// Card — composant carte événement
+// Méthodologie BEM : Block__Element--Modifier
+// .card = le bloc, .card__body = un élément du bloc
 // ============================================
 .card {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; // empile les éléments verticalement
   background-color: #EAF4F4;
   border: none;
   border-radius: 15px;
-  overflow: hidden;
-  cursor: pointer;
+  overflow: hidden; // cache ce qui dépasse les bords arrondis
+  cursor: pointer;  // montre que la carte est cliquable
+  // transition = animation fluide au survol
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 
+  // &: fait référence au sélecteur parent (.card)
+  // Equivalent CSS : .card:hover, .card:focus
   &:hover,
   &:focus {
-    transform: translateY(-3px);
+    transform: translateY(-3px); // remonte légèrement la carte au survol
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    // outline visible au focus = accessibilité clavier (WCAG AA)
     outline: 3px solid #6B9080;
   }
 
   &__body {
+    // En-tête de la carte avec le titre
     padding: 0.6rem 1rem;
     background-color: #CCE3DE;
-    border-radius: 15px 15px 0 0;
+    border-radius: 15px 15px 0 0; // arrondi uniquement en haut
   }
 
   &__title {
@@ -111,13 +134,14 @@ header {
   &__image {
     width: 100%;
     height: 180px;
-    object-fit: cover;
+    object-fit: cover; // recadre l'image sans la déformer
   }
 
   &__footer {
+    // Pied de carte avec date et lieu
     padding: 0.6rem 1rem;
     background-color: #CCE3DE;
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 15px 15px; // arrondi uniquement en bas
   }
 
   &__date {
@@ -134,7 +158,7 @@ header {
 }
 
 // ============================================
-// Footer
+// Footer — pied de page
 // ============================================
 footer {
   background-color: $color-vert-fonce;
@@ -146,7 +170,8 @@ footer {
 }
 
 // ============================================
-// Bouton retour
+// Bouton retour — sur la page détail
+// display:inline-block = se comporte comme un bloc mais reste en ligne
 // ============================================
 .btn-retour {
   display: inline-block;
@@ -154,7 +179,7 @@ footer {
   padding: 0.5rem 1rem;
   background-color: $color-vert-fonce;
   color: $color-blanc;
-  text-decoration: none;
+  text-decoration: none; // supprime le soulignement du lien
   border-radius: 6px;
   font-size: 0.9rem;
   transition: background-color 0.2s ease;
@@ -167,7 +192,7 @@ footer {
 }
 
 // ============================================
-// Fiche détail événement
+// Page détail événement
 // ============================================
 #event-detail {
   max-width: 800px;
@@ -177,7 +202,7 @@ footer {
 
 .event-detail__image {
   width: 100%;
-  height: 350px;
+  height: 200px; // hauteur mobile par défaut
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 1.5rem;
@@ -192,6 +217,7 @@ footer {
 }
 
 .event-detail__meta {
+  // Liste des infos pratiques (date, lieu, tarif)
   list-style: none;
   padding: 0;
   margin: 0 0 1.5rem 0;
@@ -210,6 +236,7 @@ footer {
 
 .event-detail__description {
   background-color: $color-fond;
+  // Bordure gauche colorée = repère visuel pour la description
   border-left: 4px solid $color-vert;
   padding: 1rem 1.2rem;
   border-radius: 0 8px 8px 0;
@@ -221,14 +248,15 @@ footer {
   }
 
   p {
-    line-height: 1.7;
+    line-height: 1.7; // interligne confortable pour la lecture
     color: $color-texte;
     font-size: 0.95rem;
   }
 }
 
 // ============================================
-// Loading / erreur
+// Chargement et erreur
+// text-align:center = centré horizontalement
 // ============================================
 #loading {
   text-align: center;
@@ -240,22 +268,13 @@ footer {
 #error-message {
   text-align: center;
   padding: 2rem;
-  color: #c0392b;
+  color: #c0392b; // rouge pour signaler l'erreur
   font-weight: bold;
 }
 
 // ============================================
-// Responsive — Mobile First
+// Responsive image détail — Mobile First
 // ============================================
-
-// Base = mobile
-#event-detail {
-  padding: 1rem;
-}
-
-.event-detail__image {
-  height: 200px;
-}
 
 // Tablette
 @media (min-width: 600px) {
