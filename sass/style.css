@@ -146,6 +146,8 @@ footer {
   margin-bottom: 1rem;
   text-align: center;
   font-family: "Irish Grover", cursive;
+  border: none;
+  outline: none;
 }
 
 .event-detail__meta {
@@ -174,6 +176,7 @@ footer {
   font-size: 1.1rem;
   color: #1e3d1a;
   margin-bottom: 0.5rem;
+  font-family: "Irish Grover", cursive;
 }
 .event-detail__description p {
   line-height: 1.7;
