@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détail de l'événement</title>
+  <link rel="stylesheet" href="../sass/style.css" />
+</head>
+<body>
+
+  <header>
+    <div>
+      <img src="../images/Logo.png" alt="Logo Nature Animation">
+    </div>
+    <h1>Île-de-France Nature Animation</h1>
+  </header>
+
+  <main>
+    <a href="../index.html" class="btn-retour" aria-label="Retour à la liste des événements">
+      ← Retour à la liste
+    </a>
+
+    <!-- Zone de chargement (affichée pendant la requête API) -->
+    <div id="loading" aria-live="polite" aria-label="Chargement en cours">
+      Chargement de l'événement...
+    </div>
+
+    <!-- Zone d'erreur (affichée si problème API) -->
+    <div id="error-message" role="alert" hidden>
+      Une erreur est survenue. Impossible de charger l'événement.
+    </div>
+
+    <!-- Fiche détail de l'événement -->
+    <article id="event-detail" hidden aria-live="polite">
+      <!-- Rempli dynamiquement par event.js -->
+    </article>
+  </main>
+
+  <footer>
+    <p>© Île-de-France Nature Animation</p>
+  </footer>
+
+  <script src="../js/event.js"></script>
+</body>
+</html>
