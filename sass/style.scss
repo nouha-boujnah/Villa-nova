@@ -39,26 +39,23 @@ body {
 header {
   background-color: #6B9080;
   display: flex;
-  align-items: center; // aligne verticalement les éléments au centre
-  padding: 20px 30px;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  gap: 15px;
   position: relative;
 
   img {
-    // Le nesting SCSS permet d'écrire les styles enfants à l'intérieur du parent
-    // Equivalent CSS : header img { max-width: 80px; }
-    max-width: 80px;
+    max-width: 60px;
+    flex-shrink: 0;
   }
 
   h1 {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: $color-blanc;
-    // Irish Grover = police importée depuis Google Fonts dans le HTML
     font-family: 'Irish Grover', cursive;
-    // Centrage absolu horizontal : position absolute + left 50% + translateX(-50%)
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    text-align: center;
   }
 }
 
@@ -129,6 +126,7 @@ header {
     font-weight: bold;
     color: $color-vert-fonce;
     margin: 0;
+    font-family: 'Irish Grover', cursive;
   }
 
   &__image {
